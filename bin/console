@@ -4,8 +4,22 @@
 require "bundler/setup"
 require "cli_progress_bar"
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+def pb(of: "2.3 MiB")
+  @progress_bar ||= CLIProgressBar.new(of)
+end
+
+def test_progress_bar
+  pb.update(10)
+  pb.update(20)
+  pb.update(30)
+  pb.update(40)
+  pb.update(50)
+  pb.update(60)
+  pb.update(70)
+  pb.update(80)
+  pb.update(90)
+  pb.update(100)
+end
 
 require "irb"
 IRB.start(__FILE__)

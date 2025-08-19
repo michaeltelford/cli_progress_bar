@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 require_relative "cli_progress_bar/version"
+require_relative "cli_progress_bar/progress_bar"
 
-module CliProgressBar
+module CLIProgressBar
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.new(*args, **kwargs)
+    ProgressBar.new(*args, **kwargs)
+  end
 end

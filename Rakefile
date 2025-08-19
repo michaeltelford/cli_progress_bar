@@ -6,3 +6,7 @@ require "minitest/test_task"
 Minitest::TestTask.create
 
 task default: :test
+
+task :console do
+  exec("./bin/console")
+end
