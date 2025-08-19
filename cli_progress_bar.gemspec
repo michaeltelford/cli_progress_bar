@@ -5,8 +5,8 @@ require_relative "lib/cli_progress_bar/version"
 Gem::Specification.new do |spec|
   spec.name = "cli_progress_bar"
   spec.version = CliProgressBar::VERSION
-  spec.authors = ["michael-telford"]
-  spec.email = ["mtelford@ipatherapeutics.com"]
+  spec.authors = ["Michael Telford"]
+  spec.email = ["michael.telford@live.com"]
 
   spec.summary = "TODO: Write a short summary, because RubyGems requires one."
   spec.description = "TODO: Write a longer description or delete this line."

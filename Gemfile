@@ -7,5 +7,5 @@ gemspec
 
 gem "irb"
 gem "rake", "~> 13.0"
-
 gem "minitest", "~> 5.16"
+gem "byebug", "~> 12.0"
