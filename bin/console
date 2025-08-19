@@ -2,24 +2,36 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
+require "irb"
 require "cli_progress_bar"
 
-def pb(of: "2.3 MiB")
-  @progress_bar ||= CLIProgressBar.new(of)
+
+# Append to path for ../lib/cli_progress_bar
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+
+
+def reload
+  load "cli_progress_bar.rb"
+  load "cli_progress_bar/version.rb"
+  load "cli_progress_bar/progress_bar.rb"
+  load "cli_progress_bar/percent_progress_bar.rb"
+  load "cli_progress_bar/item_progress_bar.rb"
 end
 
-def test_progress_bar
-  pb.update(10)
-  pb.update(20)
-  pb.update(30)
-  pb.update(40)
-  pb.update(50)
-  pb.update(60)
-  pb.update(70)
-  pb.update(80)
-  pb.update(90)
-  pb.update(100)
+
+### PERCENT PROGRESS BAR
+
+def test_percent(of: "2.3 MiB")
+  progress_bar = CLIProgressBar.new(of)
+  10.times { |i| progress_bar.update((i+1) * 10) }
 end
 
-require "irb"
+### ITEM PROGRESS BAR
+
+def test_items(of: "2.3 MiB", max_items: 10)
+  progress_bar = CLIProgressBar::ItemProgressBar.new(of, max_items)
+  10.times { |i| progress_bar.update(i + 1) }
+end
+
+
 IRB.start(__FILE__)
