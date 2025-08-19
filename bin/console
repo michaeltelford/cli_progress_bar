@@ -16,21 +16,26 @@ def reload
   load "cli_progress_bar/progress_bar.rb"
   load "cli_progress_bar/percent_progress_bar.rb"
   load "cli_progress_bar/item_progress_bar.rb"
+  load __FILE__  # This file
 end
 
 
 ### PERCENT PROGRESS BAR
 
 def test_percent(of: "2.3 MiB")
-  progress_bar = CLIProgressBar.new(of)
+  progress_bar = CLIProgressBar::PercentProgressBar.new(of)
   10.times { |i| progress_bar.update((i+1) * 10) }
+
+  nil
 end
 
 ### ITEM PROGRESS BAR
 
-def test_items(of: "2.3 MiB", max_items: 10)
+def test_items(of: "12 webpages", max_items: 12)
   progress_bar = CLIProgressBar::ItemProgressBar.new(of, max_items)
-  10.times { |i| progress_bar.update(i + 1) }
+  12.times { progress_bar.increment }
+
+  nil
 end
 
 
