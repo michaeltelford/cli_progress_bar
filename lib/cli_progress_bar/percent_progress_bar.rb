@@ -3,7 +3,9 @@
 # as a percentage and specify which percentages are to be logged to the stream.
 module CLIProgressBar
   class PercentProgressBar < ProgressBar
-    def initialize(of, log_at: LOG_AT_TEN_PERCENTAGES, bar_length: BAR_LENGTH, stream: $stdout)
+    def initialize(
+      of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH, line_char: LINE_CHAR, stream: STD_OUT
+    )
       super
     end
 
