@@ -10,14 +10,14 @@ module CLIProgressBar
       super
     end
 
-    def increment(by: 1, suffix: nil)
+    def increment(by: 1, prefix: nil, suffix: nil)
       @progress += by
-      write_to_stream(suffix: suffix)
+      write_to_stream(prefix:, suffix:)
     end
 
-    def update(percent, suffix: nil)
+    def update(percent, prefix: nil, suffix: nil)
       @progress = percent
-      write_to_stream(suffix: suffix)
+      write_to_stream(prefix:, suffix:)
     end
   end
 end

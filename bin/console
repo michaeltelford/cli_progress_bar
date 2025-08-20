@@ -33,11 +33,8 @@ end
 ### ITEM PROGRESS BAR
 
 def test_items(max_items: 12)
-  progress_bar = CLIProgressBar::ItemProgressBar.new(max_items, bar_length: 30, prefix: "Progress:", suffix: "n/a")
-  12.times do |i|
-    suffix = i == 3 ? nil : "document#{i + 1}.txt"
-    progress_bar.increment(suffix: suffix)
-  end
+  progress_bar = CLIProgressBar::ItemProgressBar.new(max_items, bar_length: 30)
+  12.times { |i| progress_bar.increment(prefix: "document#{i + 1}.txt") }
 
   nil
 end

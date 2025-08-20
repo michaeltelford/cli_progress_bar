@@ -19,21 +19,21 @@ module CLIProgressBar
       @current_items = 0
     end
 
-    def increment(by: 1, suffix: nil)
+    def increment(by: 1, prefix: nil, suffix: nil)
       @current_items += by
-      update_progress(suffix: suffix)
+      update_progress(prefix:, suffix:)
     end
 
-    def update(num_items, suffix: nil)
+    def update(num_items, prefix: nil, suffix: nil)
       @current_items = num_items
-      update_progress(suffix: suffix)
+      update_progress(prefix:, suffix:)
     end
 
     private
 
-    def update_progress(suffix: nil)
+    def update_progress(prefix: nil, suffix: nil)
       @progress = percentage(@current_items, @max_items)
-      write_to_stream(suffix: suffix, items: @current_items)
+      write_to_stream(prefix:, suffix:, items: @current_items)
     end
 
     def percentage(num_items, max_items)
