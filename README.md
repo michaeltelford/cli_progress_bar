@@ -1,6 +1,6 @@
 # CLIProgressBar
 
-A ruby based progress bar for the command line.
+A progress bar for the command line, written in ruby.
 
 ## Usage
 
@@ -24,6 +24,15 @@ Produces an output of:
 [------------------------------------------------------------------------------->]  100% of 2.3 MiB
 ```
 
+## Why This Progress Bar?
+
+There are many out there but progress bar...
+
+- Is fully customisable with sensible defaults out of the box
+- Has zero dependencies
+- Has good examples and documentation
+- Is heavily unit tested
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
@@ -46,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cli_progress_bar.
+Bug reports and pull requests are welcome on GitHub at https://github.com/michaeltelford/cli_progress_bar.
 
 ## License
 
