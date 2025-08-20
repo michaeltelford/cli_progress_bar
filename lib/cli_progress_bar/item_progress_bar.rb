@@ -20,13 +20,23 @@ module CLIProgressBar
 
     def increment(by: 1)
       @current_items += by
-      update(@current_items)
+      update_progress
     end
 
     def update(num_items)
-      percent = num_items * 100 / @max_items
-      @progress = percent
-      write_to_stream(items: num_items)
+      @current_items = num_items
+      update_progress
+    end
+
+    private
+
+    def update_progress
+      @progress = percentage(@current_items, @max_items)
+      write_to_stream(items: @current_items)
+    end
+
+    def percentage(num_items, max_items)
+      num_items * 100 / max_items
     end
   end
 end
