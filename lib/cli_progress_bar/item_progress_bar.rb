@@ -8,11 +8,12 @@ module CLIProgressBar
 
     def initialize(
       max_items,
-      of: "", log_at: LOG_AT_ALL_PERCENTS, bar_length: BAR_LENGTH, line_char: LINE_CHAR, stream: STD_OUT
+      of: "", log_at: LOG_AT_ALL_PERCENTS, bar_length: BAR_LENGTH,
+      line_char: LINE_CHAR, prefix: "", suffix: "", stream: STD_OUT
     )
       raise "Invalid max items" unless max_items.positive?
 
-      super(of:, log_at:, bar_length:, line_char:, stream:)
+      super(of:, log_at:, bar_length:, line_char:, prefix:, suffix:, stream:)
 
       @max_items = max_items
       @current_items = 0

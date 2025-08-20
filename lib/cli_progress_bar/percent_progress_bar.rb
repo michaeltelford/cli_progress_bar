@@ -4,7 +4,8 @@
 module CLIProgressBar
   class PercentProgressBar < ProgressBar
     def initialize(
-      of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH, line_char: LINE_CHAR, stream: STD_OUT
+      of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH,
+      line_char: LINE_CHAR, prefix: "", suffix: "", stream: STD_OUT
     )
       super
     end

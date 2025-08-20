@@ -12,7 +12,8 @@ class CLIProgressBar::ProgressBar
   attr_reader :progress
 
   def initialize(
-    of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH, line_char: LINE_CHAR, stream: STD_OUT
+    of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH,
+    line_char: LINE_CHAR, prefix: "", suffix: "", stream: STD_OUT
   )
     raise "Invalid bar length" unless bar_length.positive?
     raise "Invalid stream (missing #puts)" unless stream.respond_to?(:puts)
@@ -22,6 +23,8 @@ class CLIProgressBar::ProgressBar
     @log_at = log_at
     @bar_length = bar_length
     @line_char = line_char
+    @prefix = prefix
+    @suffix = suffix
     @stream = stream
   end
 
@@ -40,15 +43,17 @@ class CLIProgressBar::ProgressBar
     # Ensure non negative number and remove a char for the >
     completed_length = completed_length < 1 ? 0 : completed_length - 1
 
-    of_str = @of.empty? ? "" : " of #{@of}"
+    prefix = @prefix.empty? ? "" : "#{@prefix.strip} "
+    suffix = @suffix.empty? ? "" : " #{@suffix.strip}"
+    of_str = @of.empty? ? "" : " of #{@of.strip}"
     totals = if items
                "#{items}#{of_str} (#{@progress}%)"
              else
                "#{@progress}%#{of_str}"
              end
 
-    line = "[%s>%s]  %s" % [
-      @line_char * completed_length, " " * remaining_length, totals
+    line = "%s[%s>%s]  %s%s" % [
+      prefix, @line_char * completed_length, " " * remaining_length, totals, suffix
     ]
 
     @stream.puts(line)
