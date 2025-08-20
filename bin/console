@@ -23,9 +23,9 @@ end
 ### PERCENT PROGRESS BAR
 
 def test_percent
-  progress_bar = CLIProgressBar::PercentProgressBar.new(of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100, line_char: "=")
-  # 10.times { |i| progress_bar.update((i+1) * 10) }
-  100.times { progress_bar.increment }
+  progress_bar = CLIProgressBar::PercentProgressBar.new(of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 60, line_char: "=", suffix: "Complete")
+  10.times { |i| progress_bar.update((i+1) * 10) }
+  # 100.times { progress_bar.increment }
 
   nil
 end
@@ -33,8 +33,11 @@ end
 ### ITEM PROGRESS BAR
 
 def test_items(max_items: 12)
-  progress_bar = CLIProgressBar::ItemProgressBar.new(max_items, of: "12 webpages", bar_length: 30, prefix: "Progress:")
-  12.times { progress_bar.increment }
+  progress_bar = CLIProgressBar::ItemProgressBar.new(max_items, bar_length: 30, prefix: "Progress:", suffix: "n/a")
+  12.times do |i|
+    suffix = i == 3 ? nil : "document#{i + 1}.txt"
+    progress_bar.increment(suffix: suffix)
+  end
 
   nil
 end

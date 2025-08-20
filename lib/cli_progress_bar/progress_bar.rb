@@ -32,7 +32,7 @@ class CLIProgressBar::ProgressBar
 
   # Percent: [------------------->       ]  70% of 2.3 MiB
   # Items:   [------------------>        ]  8 of 12 repos (66%)
-  def write_to_stream(items: nil)
+  def write_to_stream(suffix: nil, items: nil)
     raise "Invalid progress value" unless @progress.between?(1, 100)
 
     return unless @log_at.include?(@progress)
@@ -44,7 +44,8 @@ class CLIProgressBar::ProgressBar
     completed_length = completed_length < 1 ? 0 : completed_length - 1
 
     prefix = @prefix.empty? ? "" : "#{@prefix.strip} "
-    suffix = @suffix.empty? ? "" : " #{@suffix.strip}"
+    suffix ||= @suffix
+    suffix = suffix.empty? ? "" : " #{suffix.strip}"
     of_str = @of.empty? ? "" : " of #{@of.strip}"
     totals = if items
                "#{items}#{of_str} (#{@progress}%)"
