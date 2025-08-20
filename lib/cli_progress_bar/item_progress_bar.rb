@@ -13,6 +13,8 @@ module CLIProgressBar
     )
       raise "Invalid max items" unless max_items.positive?
 
+      of = "#{max_items} #{of.strip}" unless of.empty?
+
       super(of:, log_at:, bar_length:, line_char:, prefix:, suffix:, stream:)
 
       @max_items = max_items
