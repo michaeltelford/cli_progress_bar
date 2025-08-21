@@ -29,7 +29,7 @@ class TestCLIPercentProgressBar < Minitest::Test
 
   def test_example_2
     progress_bar = CLIProgressBar::PercentProgressBar.new(
-      of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS,
+      of: "2.3 MiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS,
       bar_length: 50, line_char: "=", prefix: "Progress:", suffix: "complete", stream: @stream
     )
     10.times { |i| progress_bar.update((i+1) * 10) }
@@ -51,7 +51,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
 
   def test_example_5
     progress_bar = CLIProgressBar::PercentProgressBar.new(
-      of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_QUARTER_PERCENTS,
+      of: "1 GiB", log_at: CLIProgressBar::LOG_AT_QUARTER_PERCENTS,
       bar_length: 80, stream: @stream
     )
     100.times { progress_bar.increment }
@@ -67,7 +67,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
 
   def test_example_6
     progress_bar = CLIProgressBar::PercentProgressBar.new(
-      of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, stream: @stream
+      of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, stream: @stream
     )
     progress_bar.increment(by: 5)
     progress_bar.increment
@@ -93,7 +93,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
 
   def test_example_8
     progress_bar = CLIProgressBar::PercentProgressBar.new(
-      log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100, stream: @stream
+      log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100, stream: @stream
     )
     100.times { progress_bar.increment }
 
@@ -204,7 +204,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
 
   def test_remaining_length_minus_one
     progress_bar = CLIProgressBar::PercentProgressBar.new(
-      stream: @stream, log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS
+      stream: @stream, log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
     )
     100.times { progress_bar.increment }
 

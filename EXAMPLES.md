@@ -44,7 +44,7 @@ Produces an output of:
 
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
-  of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS,
+  of: "2.3 MiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS,
   bar_length: 50, line_char: "=", prefix: "Progress:", suffix: "complete"
 )
 10.times { |i| progress_bar.update((i+1) * 10) }
@@ -116,7 +116,7 @@ Produces:
 
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
-  of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_QUARTER_PERCENTS, bar_length: 80
+  of: "1 GiB", log_at: CLIProgressBar::LOG_AT_QUARTER_PERCENTS, bar_length: 80
 )
 100.times { progress_bar.increment }
 ```
@@ -136,7 +136,7 @@ Produces:
 
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
-  of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS
+  of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
 )
 
 progress_bar.increment(by: 5)
@@ -194,7 +194,7 @@ Produces:
 
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
-  log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100
+  log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100
 )
 100.times { progress_bar.increment }
 ```

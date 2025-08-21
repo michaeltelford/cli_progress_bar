@@ -22,7 +22,7 @@ end
 
 def test_percent
   progress_bar = CLIProgressBar::PercentProgressBar.new(
-    of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS
+    of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
   )
 
   progress_bar.increment(by: 5)
