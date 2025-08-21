@@ -8,7 +8,7 @@ class TestCLIPercentProgressBar < Minitest::Test
   end
 
   def test_example_1
-    progress_bar = CLIProgressBar.new(of: "2.3 MiB", stream: @stream)
+    progress_bar = CLIProgressBar.new_percent_bar(of: "2.3 MiB", stream: @stream)
 
     progress_bar.update(20)
     progress_bar.update(40)
@@ -28,7 +28,7 @@ class TestCLIPercentProgressBar < Minitest::Test
   end
 
   def test_example_2
-    progress_bar = CLIProgressBar::PercentProgressBar.new(
+    progress_bar = CLIProgressBar.new_percent_bar(
       of: "2.3 MiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS,
       bar_length: 50, line_char: "=", prefix: "Progress:", suffix: "complete", stream: @stream
     )
@@ -50,7 +50,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
   end
 
   def test_example_5
-    progress_bar = CLIProgressBar::PercentProgressBar.new(
+    progress_bar = CLIProgressBar.new_percent_bar(
       of: "1 GiB", log_at: CLIProgressBar::LOG_AT_QUARTER_PERCENTS,
       bar_length: 80, stream: @stream
     )
@@ -66,7 +66,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
   end
 
   def test_example_6
-    progress_bar = CLIProgressBar::PercentProgressBar.new(
+    progress_bar = CLIProgressBar.new_percent_bar(
       of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, stream: @stream
     )
     progress_bar.increment(by: 5)
@@ -92,7 +92,7 @@ Progress:  [=================================================>]  100% of 2.3 MiB
   end
 
   def test_example_8
-    progress_bar = CLIProgressBar::PercentProgressBar.new(
+    progress_bar = CLIProgressBar.new_percent_bar(
       log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100, stream: @stream
     )
     100.times { progress_bar.increment }
@@ -202,8 +202,27 @@ Progress:  [=================================================>]  100% of 2.3 MiB
     assert_equal expected, @stream.string
   end
 
+  def test_readme_example
+    progress_bar = CLIProgressBar.new(of: "2.3 MiB", stream: @stream)
+
+    progress_bar.update(20)
+    progress_bar.update(40)
+    progress_bar.update(60)
+    progress_bar.update(80)
+    progress_bar.update(100)
+
+    expected = <<~OUTPUT
+[----------->                                                ]  20% of 2.3 MiB
+[----------------------->                                    ]  40% of 2.3 MiB
+[----------------------------------->                        ]  60% of 2.3 MiB
+[----------------------------------------------->            ]  80% of 2.3 MiB
+[----------------------------------------------------------->]  100% of 2.3 MiB
+    OUTPUT
+    assert_equal expected, @stream.string
+  end
+
   def test_remaining_length_minus_one
-    progress_bar = CLIProgressBar::PercentProgressBar.new(
+    progress_bar = CLIProgressBar.new_percent_bar(
       stream: @stream, log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
     )
     100.times { progress_bar.increment }

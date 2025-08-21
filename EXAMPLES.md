@@ -18,8 +18,8 @@ Enjoy :-)
 ### Example 1 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
-# CLIProgressBar.new is an alias for CLIProgressBar::PercentProgressBar.new
-progress_bar = CLIProgressBar.new(of: "2.3 MiB")
+# CLIProgressBar.new_percent_bar is an alias for CLIProgressBar::PercentProgressBar.new
+progress_bar = CLIProgressBar.new_percent_bar(of: "2.3 MiB")
 
 progress_bar.update(20)
 progress_bar.update(40)
@@ -43,7 +43,7 @@ Produces an output of:
 ### Example 2 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::PercentProgressBar.new(
+progress_bar = CLIProgressBar.new_percent_bar(
   of: "2.3 MiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS,
   bar_length: 50, line_char: "=", prefix: "Progress:", suffix: "complete"
 )
@@ -70,7 +70,8 @@ Progress:  [=================================================>]  100% of 2.3 MiB
 ### Example 3 - `CLIProgressBar::ItemProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::ItemProgressBar.new(5, of: "documents", bar_length: 30, line_char: ">")
+# CLIProgressBar.new_item_bar is an alias for CLIProgressBar::ItemProgressBar.new
+progress_bar = CLIProgressBar.new_item_bar(5, of: "documents", bar_length: 30, line_char: ">")
 5.times { |i| progress_bar.increment(prefix: "document#{i + 1}.txt") }
 ```
 
@@ -89,7 +90,7 @@ document5.txt  [>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>]  5 of 5 documents (100%)
 ### Example 4 - `CLIProgressBar::ItemProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::ItemProgressBar.new(12, of: "documents", bar_length: 30, line_char: ">")
+progress_bar = CLIProgressBar.new_item_bar(12, of: "documents", bar_length: 30, line_char: ">")
 12.times { |i| progress_bar.increment(prefix: " -%15s" % ["document#{i + 1}.txt"]) }
 ```
 
@@ -115,7 +116,7 @@ Produces:
 ### Example 5 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::PercentProgressBar.new(
+progress_bar = CLIProgressBar.new_percent_bar(
   of: "1 GiB", log_at: CLIProgressBar::LOG_AT_QUARTER_PERCENTS, bar_length: 80
 )
 100.times { progress_bar.increment }
@@ -135,7 +136,7 @@ Produces:
 ### Example 6 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::PercentProgressBar.new(
+progress_bar = CLIProgressBar.new_percent_bar(
   of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
 )
 
@@ -167,7 +168,7 @@ Produces:
 ### Example 7 - `CLIProgressBar::ItemProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::ItemProgressBar.new(10, of: "webpages")
+progress_bar = CLIProgressBar.new_item_bar(10, of: "webpages")
 
 progress_bar.increment(by: 3)
 progress_bar.increment
@@ -193,7 +194,7 @@ Produces:
 ### Example 8 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
-progress_bar = CLIProgressBar::PercentProgressBar.new(
+progress_bar = CLIProgressBar.new_percent_bar(
   log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100
 )
 100.times { progress_bar.increment }

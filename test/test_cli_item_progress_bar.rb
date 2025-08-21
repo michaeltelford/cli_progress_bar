@@ -8,7 +8,7 @@ class TestCLIItemProgressBar < Minitest::Test
   end
 
   def test_example_3
-    progress_bar = CLIProgressBar::ItemProgressBar.new(5, of: "documents", bar_length: 30, line_char: ">", stream: @stream)
+    progress_bar = CLIProgressBar.new_item_bar(5, of: "documents", bar_length: 30, line_char: ">", stream: @stream)
     5.times { |i| progress_bar.increment(prefix: "document#{i + 1}.txt") }
 
     expected = <<~OUTPUT
@@ -22,7 +22,7 @@ document5.txt  [>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>]  5 of 5 documents (100%)
   end
 
   def test_example_4
-    progress_bar = CLIProgressBar::ItemProgressBar.new(12, of: "documents", bar_length: 30, line_char: ">", stream: @stream)
+    progress_bar = CLIProgressBar.new_item_bar(12, of: "documents", bar_length: 30, line_char: ">", stream: @stream)
     12.times { |i| progress_bar.increment(prefix: " -%15s" % ["document#{i + 1}.txt"]) }
 
     expected = <<~OUTPUT
@@ -43,7 +43,7 @@ document5.txt  [>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>]  5 of 5 documents (100%)
   end
 
   def test_example_7
-    progress_bar = CLIProgressBar::ItemProgressBar.new(10, of: "webpages", stream: @stream)
+    progress_bar = CLIProgressBar.new_item_bar(10, of: "webpages", stream: @stream)
 
     progress_bar.increment(by: 3)
     progress_bar.increment

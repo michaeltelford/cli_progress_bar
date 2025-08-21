@@ -21,24 +21,19 @@ end
 
 
 def test_percent
-  progress_bar = CLIProgressBar::PercentProgressBar.new(
-    of: "1 GiB", log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS
-  )
+  progress_bar = CLIProgressBar.new(of: "2.3 MiB")
 
-  progress_bar.increment(by: 5)
-  progress_bar.increment
-  progress_bar.increment
-  progress_bar.increment
-  progress_bar.increment(by: 2)
+  progress_bar.update(20)
   progress_bar.update(40)
-  progress_bar.increment(by: 40, suffix: "Almost there!")
-  progress_bar.update(100, suffix: "Complete :-)")
+  progress_bar.update(60)
+  progress_bar.update(80)
+  progress_bar.update(100)
 
   nil
 end
 
 def test_items
-  progress_bar = CLIProgressBar::ItemProgressBar.new(10, of: "webpages")
+  progress_bar = CLIProgressBar.new_item_bar(10, of: "webpages")
 
   progress_bar.increment(by: 3)
   progress_bar.increment

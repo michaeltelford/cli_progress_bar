@@ -15,6 +15,14 @@ module CLIProgressBar
   STD_OUT = $stdout
 
   def self.new(*args, **kwargs)
+    new_percent_bar(*args, **kwargs)
+  end
+
+  def self.new_percent_bar(*args, **kwargs)
     PercentProgressBar.new(*args, **kwargs)
+  end
+
+  def self.new_item_bar(*args, **kwargs)
+    ItemProgressBar.new(*args, **kwargs)
   end
 end

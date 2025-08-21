@@ -26,7 +26,7 @@ class CLIProgressBar::ProgressBar
   #
   # Percent: [------------------->       ]  70% of 2.3 MiB
   # - or -
-  # Items:   [------------------>        ]  8 of 12 repos (66%)
+  # Item:    [------------------>        ]  8 of 12 repos (66%)
   def write_to_stream(prefix: nil, suffix: nil, items: nil)
     raise "Invalid progress value" unless @progress.between?(1, 100)
 
