@@ -31,11 +31,11 @@ progress_bar.update(100)
 Produces an output of:
 
 ```sh
-[--------------->                                                                ]  20% of 2.3 MiB
-[------------------------------->                                                ]  40% of 2.3 MiB
-[----------------------------------------------->                                ]  60% of 2.3 MiB
-[--------------------------------------------------------------->                ]  80% of 2.3 MiB
-[------------------------------------------------------------------------------->]  100% of 2.3 MiB
+[----------->                                                ]  20% of 2.3 MiB
+[----------------------->                                    ]  40% of 2.3 MiB
+[----------------------------------->                        ]  60% of 2.3 MiB
+[----------------------------------------------->            ]  80% of 2.3 MiB
+[----------------------------------------------------------->]  100% of 2.3 MiB
 ```
 
 ---
@@ -45,7 +45,7 @@ Produces an output of:
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
   of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS,
-  bar_length: 60, line_char: "=", prefix: "Progress:", suffix: "complete"
+  bar_length: 50, line_char: "=", prefix: "Progress:", suffix: "complete"
 )
 10.times { |i| progress_bar.update((i+1) * 10) }
 ```
@@ -53,16 +53,16 @@ progress_bar = CLIProgressBar::PercentProgressBar.new(
 Produces:
 
 ```sh
-Progress:  [=====>                                                      ]  10% of 2.3 MiB complete
-Progress:  [===========>                                                ]  20% of 2.3 MiB complete
-Progress:  [=================>                                          ]  30% of 2.3 MiB complete
-Progress:  [=======================>                                    ]  40% of 2.3 MiB complete
-Progress:  [=============================>                              ]  50% of 2.3 MiB complete
-Progress:  [===================================>                        ]  60% of 2.3 MiB complete
-Progress:  [=========================================>                  ]  70% of 2.3 MiB complete
-Progress:  [===============================================>            ]  80% of 2.3 MiB complete
-Progress:  [=====================================================>      ]  90% of 2.3 MiB complete
-Progress:  [===========================================================>]  100% of 2.3 MiB complete
+Progress:  [====>                                             ]  10% of 2.3 MiB complete
+Progress:  [=========>                                        ]  20% of 2.3 MiB complete
+Progress:  [==============>                                   ]  30% of 2.3 MiB complete
+Progress:  [===================>                              ]  40% of 2.3 MiB complete
+Progress:  [========================>                         ]  50% of 2.3 MiB complete
+Progress:  [=============================>                    ]  60% of 2.3 MiB complete
+Progress:  [==================================>               ]  70% of 2.3 MiB complete
+Progress:  [=======================================>          ]  80% of 2.3 MiB complete
+Progress:  [============================================>     ]  90% of 2.3 MiB complete
+Progress:  [=================================================>]  100% of 2.3 MiB complete
 ```
 
 ---
@@ -116,7 +116,7 @@ Produces:
 
 ```ruby
 progress_bar = CLIProgressBar::PercentProgressBar.new(
-  of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_QUARTER_PERCENTS
+  of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_QUARTER_PERCENTS, bar_length: 80
 )
 100.times { progress_bar.increment }
 ```
@@ -152,14 +152,14 @@ progress_bar.update(100, suffix: "Complete :-)")
 Produces:
 
 ```sh
-[--->                                                                            ]  5% of 1 GiB
-[--->                                                                            ]  6% of 1 GiB
-[---->                                                                           ]  7% of 1 GiB
-[----->                                                                          ]  8% of 1 GiB
-[------->                                                                        ]  10% of 1 GiB
-[------------------------------->                                                ]  40% of 1 GiB
-[--------------------------------------------------------------->                ]  80% of 1 GiB Almost there!
-[------------------------------------------------------------------------------->]  100% of 1 GiB Complete :-)
+[-->                                                         ]  5% of 1 GiB
+[-->                                                         ]  6% of 1 GiB
+[--->                                                        ]  7% of 1 GiB
+[--->                                                        ]  8% of 1 GiB
+[----->                                                      ]  10% of 1 GiB
+[----------------------->                                    ]  40% of 1 GiB
+[----------------------------------------------->            ]  80% of 1 GiB Almost there!
+[----------------------------------------------------------->]  100% of 1 GiB Complete :-)
 ```
 
 ---
@@ -180,12 +180,12 @@ progress_bar.update(10, suffix: "Complete :-)")
 Produces:
 
 ```sh
-[----------------------->                                                        ]  3 of 10 webpages (30%)
-[------------------------------->                                                ]  4 of 10 webpages (40%)
-[--------------------------------------->                                        ]  5 of 10 webpages (50%)
-[----------------------------------------------->                                ]  6 of 10 webpages (60%)
-[--------------------------------------------------------------->                ]  8 of 10 webpages (80%) Almost there!
-[------------------------------------------------------------------------------->]  10 of 10 webpages (100%) Complete :-)
+[----------------->                                          ]  3 of 10 webpages (30%)
+[----------------------->                                    ]  4 of 10 webpages (40%)
+[----------------------------->                              ]  5 of 10 webpages (50%)
+[----------------------------------->                        ]  6 of 10 webpages (60%)
+[----------------------------------------------->            ]  8 of 10 webpages (80%) Almost there!
+[----------------------------------------------------------->]  10 of 10 webpages (100%) Complete :-)
 ```
 
 ---
