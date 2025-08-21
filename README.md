@@ -1,5 +1,7 @@
 # CLIProgressBar
 
+[![ci](https://github.com/michaeltelford/cli_progress_bar/actions/workflows/main.yml/badge.svg)](https://github.com/michaeltelford/cli_progress_bar/actions/workflows/main.yml)
+
 A progress bar for the command line, written in ruby.
 
 ## Usage
@@ -31,7 +33,7 @@ Produces an output of:
 There are many out there but progress bar...
 
 - Is fully customisable with sensible defaults out of the box
-- Has good [examples](https://github.com/michaeltelford/cli_progress_bar/tree/master/EXAMPLES.md) to copy and paste from
+- Has good [examples](https://github.com/michaeltelford/cli_progress_bar/blob/main/EXAMPLES.md) to copy and paste from
 - Has zero dependencies
 - Is heavily unit tested
 
