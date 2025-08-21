@@ -51,10 +51,4 @@ def test_items
 end
 
 
-def bug1
-  progress_bar = CLIProgressBar::PercentProgressBar.new(log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS)
-  100.times { progress_bar.increment }
-end
-
-
 IRB.start(__FILE__)

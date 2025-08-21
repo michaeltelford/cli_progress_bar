@@ -42,6 +42,7 @@ class CLIProgressBar::ProgressBar
 
     completed_length = (@bar_length * @progress / 100).to_i
     remaining_length = @bar_length - completed_length
+    remaining_length -= 1 if remaining_length == @bar_length
 
     # Ensure non negative number and remove a char for the >
     completed_length = completed_length < 1 ? 0 : completed_length - 1
