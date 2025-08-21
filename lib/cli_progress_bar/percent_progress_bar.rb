@@ -11,11 +11,15 @@ module CLIProgressBar
     end
 
     def increment(by: 1, prefix: nil, suffix: nil)
+      raise "Invalid by: value" unless (@progress + by).between?(1, 100)
+
       @progress += by
       write_to_stream(prefix:, suffix:)
     end
 
     def update(percent, prefix: nil, suffix: nil)
+      raise "Invalid percent value" unless percent.between?(1, 100)
+
       @progress = percent
       write_to_stream(prefix:, suffix:)
     end

@@ -22,11 +22,15 @@ module CLIProgressBar
     end
 
     def increment(by: 1, prefix: nil, suffix: nil)
+      raise "Invalid by: value" unless (@current_items + by).between?(1, @max_items)
+
       @current_items += by
       update_progress(prefix:, suffix:)
     end
 
     def update(num_items, prefix: nil, suffix: nil)
+      raise "Invalid num_items value" unless num_items.between?(1, @max_items)
+
       @current_items = num_items
       update_progress(prefix:, suffix:)
     end
