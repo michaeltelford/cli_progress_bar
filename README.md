@@ -7,20 +7,22 @@ A progress bar for the command line, written in ruby.
 ```ruby
 require "cli_progress_bar"
 
-progress_bar = CLIProgressBar.new("2.3 MiB")
+progress_bar = CLIProgressBar.new(of: "2.3 MiB")
 
-progress_bar.update(25)
-progress_bar.update(50)
-progress_bar.update(75)
+progress_bar.update(20)
+progress_bar.update(40)
+progress_bar.update(60)
+progress_bar.update(80)
 progress_bar.update(100)
 ```
 
 Produces an output of:
 
 ```sh
-[------------------->                                                            ]  25% of 2.3 MiB
-[--------------------------------------->                                        ]  50% of 2.3 MiB
-[----------------------------------------------------------->                    ]  75% of 2.3 MiB
+[--------------->                                                                ]  20% of 2.3 MiB
+[------------------------------->                                                ]  40% of 2.3 MiB
+[----------------------------------------------->                                ]  60% of 2.3 MiB
+[--------------------------------------------------------------->                ]  80% of 2.3 MiB
 [------------------------------------------------------------------------------->]  100% of 2.3 MiB
 ```
 
@@ -29,8 +31,8 @@ Produces an output of:
 There are many out there but progress bar...
 
 - Is fully customisable with sensible defaults out of the box
+- Has good [examples](https://github.com/michaeltelford/cli_progress_bar/tree/master/EXAMPLES.md) to copy and paste from
 - Has zero dependencies
-- Has good examples and documentation
 - Is heavily unit tested
 
 ## Installation

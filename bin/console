@@ -20,23 +20,40 @@ def reload
 end
 
 
-### PERCENT PROGRESS BAR
-
 def test_percent
-  progress_bar = CLIProgressBar::PercentProgressBar.new(of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 60, line_char: "=", suffix: "complete")
-  10.times { |i| progress_bar.update((i+1) * 10) }
-  # 100.times { progress_bar.increment }
+  progress_bar = CLIProgressBar::PercentProgressBar.new(
+    of: "1 GiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS
+  )
+
+  progress_bar.increment(by: 5)
+  progress_bar.increment
+  progress_bar.increment
+  progress_bar.increment
+  progress_bar.increment(by: 2)
+  progress_bar.update(40)
+  progress_bar.increment(by: 40, suffix: "Almost there!")
+  progress_bar.update(100, suffix: "Complete :-)")
 
   nil
 end
 
-### ITEM PROGRESS BAR
+def test_items
+  progress_bar = CLIProgressBar::ItemProgressBar.new(10, of: "webpages")
 
-def test_items(max_items: 12)
-  progress_bar = CLIProgressBar::ItemProgressBar.new(max_items, of: "documents", bar_length: 30)
-  12.times { |i| progress_bar.increment(prefix: "document#{i + 1}.txt") }
+  progress_bar.increment(by: 3)
+  progress_bar.increment
+  progress_bar.increment
+  progress_bar.increment
+  progress_bar.increment(by: 2, suffix: "Almost there!")
+  progress_bar.update(10, suffix: "Complete :-)")
 
   nil
+end
+
+
+def bug1
+  progress_bar = CLIProgressBar::PercentProgressBar.new(log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS)
+  100.times { progress_bar.increment }
 end
 
 
