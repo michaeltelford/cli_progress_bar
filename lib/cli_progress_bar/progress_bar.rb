@@ -15,8 +15,8 @@ class CLIProgressBar::ProgressBar
     of: "", log_at: LOG_AT_TEN_PERCENTS, bar_length: BAR_LENGTH,
     line_char: LINE_CHAR, prefix: "", suffix: "", stream: STD_OUT
   )
-    raise "Invalid bar length" unless bar_length.positive?
-    raise "Invalid stream (missing #puts)" unless stream.respond_to?(:puts)
+    raise "bar_length: must be positive and even" unless bar_length.positive? && bar_length.even?
+    raise "stream: must respond to #puts" unless stream.respond_to?(:puts)
 
     @progress = 0
     @of = of.to_s
@@ -30,7 +30,10 @@ class CLIProgressBar::ProgressBar
 
   private
 
+  # Writes a single line to stream, something like:
+  #
   # Percent: [------------------->       ]  70% of 2.3 MiB
+  # - or -
   # Items:   [------------------>        ]  8 of 12 repos (66%)
   def write_to_stream(prefix: nil, suffix: nil, items: nil)
     raise "Invalid progress value" unless @progress.between?(1, 100)

@@ -11,7 +11,7 @@ module CLIProgressBar
       of: "", log_at: LOG_AT_ALL_PERCENTS, bar_length: BAR_LENGTH,
       line_char: LINE_CHAR, prefix: "", suffix: "", stream: STD_OUT
     )
-      raise "Invalid max items" unless max_items.positive?
+      raise "max_items must be positive" unless max_items.positive?
 
       of = "#{max_items} #{of.strip}" unless of.empty?
 
