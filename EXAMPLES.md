@@ -47,7 +47,6 @@ progress_bar = CLIProgressBar::PercentProgressBar.new(
   of: "2.3 MiB", log_at: CLIProgressBar::ProgressBar::LOG_AT_ALL_PERCENTS,
   bar_length: 60, line_char: "=", prefix: "Progress:", suffix: "complete"
 )
-
 10.times { |i| progress_bar.update((i+1) * 10) }
 ```
 
