@@ -92,6 +92,22 @@ Progress:  [=================================================>]  100% of 2.3 MiB
   end
 
   def test_example_8
+    File.open("./progress_report.txt", "w") do |f|
+      progress_bar = CLIProgressBar.new_item_bar(5, stream: f)
+      5.times { |i| progress_bar.update(i + 1) }
+    end
+
+    expected = <<~OUTPUT
+[----------->                                                ]  1 (20%)
+[----------------------->                                    ]  2 (40%)
+[----------------------------------->                        ]  3 (60%)
+[----------------------------------------------->            ]  4 (80%)
+[----------------------------------------------------------->]  5 (100%)
+    OUTPUT
+    assert_equal expected, File.read("./progress_report.txt")
+  end
+
+  def test_example_9
     progress_bar = CLIProgressBar.new_percent_bar(
       log_at: CLIProgressBar::LOG_AT_ALL_PERCENTS, bar_length: 100, stream: @stream
     )

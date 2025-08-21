@@ -191,7 +191,31 @@ Produces:
 
 ---
 
-### Example 8 - `CLIProgressBar::PercentProgressBar`
+### Example 8 - `CLIProgressBar::ItemProgressBar`
+
+```ruby
+# Write the progress to file
+File.open("./progress_report.txt", "w") do |f|
+  progress_bar = CLIProgressBar.new_item_bar(5, stream: f)
+  5.times { |i| progress_bar.update(i + 1) }
+end
+```
+
+Puts nothing to `STDOUT` but the file will now contain:
+
+> progress_report.txt
+```
+[----------->                                                ]  1 (20%)
+[----------------------->                                    ]  2 (40%)
+[----------------------------------->                        ]  3 (60%)
+[----------------------------------------------->            ]  4 (80%)
+[----------------------------------------------------------->]  5 (100%)
+
+```
+
+---
+
+### Example 9 - `CLIProgressBar::PercentProgressBar`
 
 ```ruby
 progress_bar = CLIProgressBar.new_percent_bar(

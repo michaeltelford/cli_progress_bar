@@ -30,7 +30,7 @@ Produces an output of:
 
 ## Why This Progress Bar?
 
-There are many out there but progress bar...
+There are many out there but this progress bar...
 
 - Is fully customisable with sensible defaults out of the box
 - Has good [examples](https://github.com/michaeltelford/cli_progress_bar/blob/main/EXAMPLES.md) to copy and paste from

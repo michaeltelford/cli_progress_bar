@@ -33,14 +33,10 @@ def test_percent
 end
 
 def test_items
-  progress_bar = CLIProgressBar.new_item_bar(10, of: "webpages")
-
-  progress_bar.increment(by: 3)
-  progress_bar.increment
-  progress_bar.increment
-  progress_bar.increment
-  progress_bar.increment(by: 2, suffix: "Almost there!")
-  progress_bar.update(10, suffix: "Complete :-)")
+  File.open("./progress_report.txt", "w") do |f|
+    progress_bar = CLIProgressBar.new_item_bar(5, stream: f)
+    5.times { |i| progress_bar.update(i + 1) }
+  end
 
   nil
 end
